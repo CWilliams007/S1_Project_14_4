@@ -5,8 +5,8 @@
    Tutorial 12
    Case Problem 4
 
-   Author: 
-   Date:   
+       Author: Chad Williams
+       Date:   4.5.19
    
    Filename: gi_sort.js
    
@@ -52,23 +52,49 @@
 
 */
 
+var tableData;
+var dataCategories;
+var sortIndex = 0;
+var sortDirection = 1;
+
+window.addEventListener('load', defineDataArray);
 
 
+function defineDataArray() {
+      var tableRows = document.querySelectorAll("table.sortable tbody tr");
+      console.log(tableRows)
 
+      for (var i = 0; i < tableRows.length; i++) {
+            var rowCells = tableRows[i].children;
+            var rowValues = new Array(rowCells.length);
+            for (var i = 0; i < rowCells.length; i++) {
+                  rowValues += [i].textContent;
+            }
+            tableData += rowValues;
+      }
+}
+
+dataSort2D(tableData);
+
+function writeTableData() {
+      var tBody;
+      var tr;
+      var td;
+}
 
 
 
 
 
 function dataSort2D(a, b) {
-   if (isNaN(parseFloat(a[sortIndex])) === false) {
-      return (a[sortIndex] - b[sortIndex])*sortDirection;
-   } else {
-      var astring = a[sortIndex].toLowerCase();
-      var bstring = b[sortIndex].toLowerCase();
-           
-      if (bstring > astring) return -sortDirection;
-      if (bstring < astring) return sortDirection;
-      return 0;
-   }
+      if (isNaN(parseFloat(a[sortIndex])) === false) {
+            return (a[sortIndex] - b[sortIndex]) * sortDirection;
+      } else {
+            var astring = a[sortIndex].toLowerCase();
+            var bstring = b[sortIndex].toLowerCase();
+
+            if (bstring > astring) return -sortDirection;
+            if (bstring < astring) return sortDirection;
+            return 0;
+      }
 }
